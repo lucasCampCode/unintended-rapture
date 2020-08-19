@@ -25,30 +25,30 @@ namespace HelloWorld
             Console.WriteLine("press enter to continue!");
             Console.ReadLine();
             Console.Clear();
-            Console.WriteLine("you have stats that are given to you at the begining.");
-            Console.WriteLine("to see those stats type 'stats'.");
 
-            //gives individual stats for this person
-            begin:
-            if(Console.ReadLine().ToLower() == "stats")
+        //gives individual stats for this person
+        begin:
+
+            Console.WriteLine("::::lobby::::");
+            Console.WriteLine("things to do.");
+            Console.WriteLine("type stats for your stats.");
+            Console.WriteLine("type role to give yourself a role.");
+            string todo = Console.ReadLine().ToLower();
+            Console.Clear();
+
+            if(todo == "stats")
             {
                 Console.WriteLine("user: " + name);
                 Console.WriteLine("role:" + role);
                 Console.WriteLine("health: " + health);
                 Console.WriteLine("level: " + level);
-                if(role == "not set")
-                {
-                    Console.WriteLine("you seem to not have role set to set your role type 'roles'");
-                    Console.ReadKey();
-                    Console.Clear();
-                }
+                Console.WriteLine("press any key to continue.");
+                Console.ReadKey();
+                Console.Clear();
             }
-            else
-            {
-                Console.WriteLine("invalid input");
-            }
+            else if (todo == "role" && role == "not set")
             //roles
-            if (Console.ReadLine().ToLower() == "roles" && role == "not set")
+           
             {
                 Console.WriteLine("so you want a role!");
                 Console.WriteLine("here are your choices");
@@ -56,7 +56,8 @@ namespace HelloWorld
                 Console.WriteLine("tank: +200 health|");
 
                 // this is where it places your role and applies to the person
-                if(Console.ReadLine().ToLower() == "fighter")
+                string roleS = Console.ReadLine().ToLower();
+                if(roleS == "fighter")
                 {
                     Console.WriteLine("you have chossen the fighter role!");
                     health = 150;
@@ -64,7 +65,8 @@ namespace HelloWorld
                     Console.WriteLine("press any key to continue.");
                     Console.ReadKey();
                     Console.Clear();
-                }else if(Console.ReadLine().ToLower() == "tank")
+                }
+                else if(roleS == "tank")
                 {
                     Console.WriteLine("you have chossen tank role!");
                     health = 300;
@@ -73,14 +75,17 @@ namespace HelloWorld
                     Console.ReadKey();
                     Console.Clear();
                 }
+                
             }
-            else
+            else if(todo == "role" && role != "not set")
             {
                 Console.WriteLine("sorry you have already chose your role.");
                 Console.WriteLine("press any key to continue.");
                 Console.ReadKey();
                 Console.Clear();
             }
+
+
             goto begin;
         }
     }
