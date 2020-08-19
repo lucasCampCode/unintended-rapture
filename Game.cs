@@ -29,7 +29,8 @@ namespace HelloWorld
             Console.WriteLine("to see those stats type 'stats'.");
 
             //gives individual stats for this person
-            if(Console.ReadLine() == "stats")
+            begin:
+            if(Console.ReadLine().ToLower() == "stats")
             {
                 Console.WriteLine("user: " + name);
                 Console.WriteLine("role:" + role);
@@ -42,31 +43,45 @@ namespace HelloWorld
                     Console.Clear();
                 }
             }
-            if (Console.ReadLine() == "roles" && role == "not set")
+            else
+            {
+                Console.WriteLine("invalid input");
+            }
+            //roles
+            if (Console.ReadLine().ToLower() == "roles" && role == "not set")
             {
                 Console.WriteLine("so you want a role!");
-                Console.WriteLine("here are some choices");
+                Console.WriteLine("here are your choices");
                 Console.WriteLine("fighter: +50 health|");
                 Console.WriteLine("tank: +200 health|");
 
-                Console.ReadLine();
-
-                if(Console.ReadLine() == "fighter")
+                // this is where it places your role and applies to the person
+                if(Console.ReadLine().ToLower() == "fighter")
                 {
                     Console.WriteLine("you have chossen the fighter role!");
                     health = 150;
-                }else if(Console.ReadLine() == "tank")
+                    role = "fighter";
+                    Console.WriteLine("press any key to continue.");
+                    Console.ReadKey();
+                    Console.Clear();
+                }else if(Console.ReadLine().ToLower() == "tank")
                 {
                     Console.WriteLine("you have chossen tank role!");
                     health = 300;
+                    role = "tank";
+                    Console.WriteLine("press any key to continue.");
+                    Console.ReadKey();
+                    Console.Clear();
                 }
             }
             else
             {
                 Console.WriteLine("sorry you have already chose your role.");
-
+                Console.WriteLine("press any key to continue.");
+                Console.ReadKey();
+                Console.Clear();
             }
-
+            goto begin;
         }
     }
 }
