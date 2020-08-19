@@ -9,24 +9,30 @@ namespace HelloWorld
 
         public void Run()
         {
-            int numLet = 5;
-            int health = 100;
-            float flow = 10.5f;
-            double doub = 0.88;
-            Console.WriteLine("whats your name stranger?");
+            //one character game where stats start normally
+            //this variable sets the normal health
+            float health = 100.0f;
+            //this value sets the starter level
+            float level = 1.0f;
+
+            //start of the game generation
+            Console.WriteLine("hello stranger, what's your name?");
+            // this value stores add your name
             string name = Console.ReadLine();
-            char letter = 'A';
-            bool ifOn = true;
-            if (name.Length > numLet)
+            Console.WriteLine("im glad you came " + name + ".");
+            Console.WriteLine("press enter to continue!");
+            Console.ReadLine();
+            Console.Clear();
+            Console.WriteLine("you have stats that are given to you at the begining.");
+            Console.WriteLine("to see those stats type 'stats'.");
+
+            //gives individual stats for this person
+            if(Console.ReadLine() == "stats")
             {
-                Console.WriteLine(name + " is longer than five characters");
-            }else if(name.Length == numLet)
-            {
-                Console.WriteLine(name + " is exactly five characters");
+                Console.WriteLine("user: " + name);
+                Console.WriteLine("health: " + health);
+                Console.WriteLine("level: " + level);
             }
-            else {
-                Console.WriteLine(name + " is shorter than five characters");
-            };
         }
     }
 }
