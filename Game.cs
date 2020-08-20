@@ -94,63 +94,76 @@ namespace HelloWorld
             }
             goto begin;
 
-            start:
+        start:
             {
                 Random rnd = new Random();
                 //array for diffrent numbers
-                int[] randNum = { 1, 2, 3, 4, 5, 6, 7, 8, 9};
+                int[] randNum = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
 
                 // get random indexes for number
                 int pulledNum = rnd.Next(randNum.Length);
 
-                if(pulledNum == 1)
+                if (pulledNum == 1)
                 {
-
-<<<<<<< HEAD
-<<<<<<< Updated upstream
+                    Console.WriteLine("random " + pulledNum + " has been pulled");
+                    Console.ReadKey();
+                    Console.Clear();
                 }
-                else if(pulledNum == 2)
+                else if (pulledNum == 2)
                 {
-
+                    Console.WriteLine("random " + pulledNum + " has been pulled");
+                    Console.ReadKey();
+                    Console.Clear();
                 }
-                else if(pulledNum == 3)
+                else if (pulledNum == 3)
                 {
-
+                    Console.WriteLine("random " + pulledNum + " has been pulled");
+                    Console.ReadKey();
+                    Console.Clear();
                 }
                 else if (pulledNum == 4)
                 {
-
+                    Console.WriteLine("random " + pulledNum + " has been pulled");
+                    Console.ReadKey();
+                    Console.Clear();
                 }
                 else if (pulledNum == 5)
                 {
-
+                    Console.WriteLine("random " + pulledNum + " has been pulled");
+                    Console.ReadKey();
+                    Console.Clear();
                 }
                 else if (pulledNum == 6)
                 {
-
+                    Console.WriteLine("random " + pulledNum + " has been pulled");
+                    Console.ReadKey();
+                    Console.Clear();
                 }
                 else if (pulledNum == 7)
                 {
-
+                    Console.WriteLine("random " + pulledNum + " has been pulled");
+                    Console.ReadKey();
+                    Console.Clear();
                 }
                 else if (pulledNum == 8)
                 {
-
+                    Console.WriteLine("random " + pulledNum + " has been pulled");
+                    Console.ReadKey();
+                    Console.Clear();
                 }
                 else if (pulledNum == 9)
                 {
-
+                    Console.WriteLine("random " + pulledNum + " has been pulled");
+                    Console.ReadKey();
+                    Console.Clear();
                 }
                 else
-=======
-                }else if(pulledNum == 2)
->>>>>>> Stashed changes
-=======
-                }else if(pulledNum == 2)
->>>>>>> parent of bcb44af... added more random occurrence
                 {
-
+                    Console.ReadKey();
+                    Console.Clear();
                 }
+
+                goto start;
             }
 
         }
