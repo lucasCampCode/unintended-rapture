@@ -13,13 +13,17 @@ namespace HelloWorld
             start:
             //one character game where stats start normally
             //this variable sets the normal health
-            float health = 100.0f;
+            float health;
             //this value sets the starter level
-            float level = 1.0f;
-            string role = "not set";
-            string place = "lobby";
-            float coins = 0.0f;
-            float maxhealth = 0.0f;
+            float level;
+            string role;
+            string place;
+            float maxhealth;
+            maxhealth = 100;
+            health = 100;
+            level = 1;
+            role = "not set";
+            place = "lobby";
 
 
 
@@ -60,8 +64,6 @@ namespace HelloWorld
                     Console.WriteLine("role:" + role);
                     Console.WriteLine("health: " + health);
                     Console.WriteLine("level: " + level);
-                    Console.WriteLine("cash: " + coins);
-                    
                     Console.WriteLine("press any key to continue.");
                     Console.ReadKey();
                     Console.Clear();
@@ -157,11 +159,12 @@ namespace HelloWorld
                         Console.WriteLine("press 1 for yes");
                         Console.WriteLine("press 2 for no");
                         char key = Console.ReadKey().KeyChar;
-                        if(key == 1)
+                        if(key == '1')
                         {
+                            Console.Clear();
                             goto start;
                         }
-                        else if(key == 2)
+                        else if(key == '2')
                         {
                             break;
                         }
@@ -249,6 +252,7 @@ namespace HelloWorld
                         Console.WriteLine();
                     }
                 }
+                if(health <= 0) { break; }
             } 
             
         }
