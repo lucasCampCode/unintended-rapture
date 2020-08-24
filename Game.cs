@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Transactions;
 
@@ -113,8 +114,22 @@ namespace HelloWorld
                 }
                 else if(todo == "rest")
                 {
-                    Console.WriteLine("you decide to rest and regined health");
-                    health = maxhealth;
+                    if(health <= maxhealth)
+                    {
+                        for (int i = 0; i < maxhealth; i++)
+                        {
+                            if (health != maxhealth)
+                            {
+                                health++;
+                                Console.WriteLine("health: " + health);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("you are at max health");
+                    }
+                    Console.WriteLine("press any key to continue");
                     Console.ReadKey();
                     Console.Clear();
                 }
@@ -191,7 +206,7 @@ namespace HelloWorld
                         }
                         else if (pulledNum == 3)
                         {
-                            Console.WriteLine("nothing happens");
+                            Console.WriteLine("you walk through the never ending woods");
                             Console.WriteLine();
                         }
                         else if (pulledNum == 4)
@@ -205,7 +220,7 @@ namespace HelloWorld
                         }
                         else if (pulledNum == 5)
                         {
-                            Console.WriteLine("nothing happens");
+                            Console.WriteLine("you walk through the never ending woods");
                             Console.WriteLine();
                         }
                         else if (pulledNum == 6)
@@ -228,17 +243,22 @@ namespace HelloWorld
                         }
                         else if (pulledNum == 7)
                         {
-                            Console.WriteLine("nothing happens");
+                            Console.WriteLine("you walk through the never ending woods");
                             Console.WriteLine();
                         }
                         else if (pulledNum == 8)
                         {
-                            Console.WriteLine("random " + pulledNum + " has been pulled");
+                            int enemyDamage = randDamage[pulledDamage];
+                            health -= enemyDamage;
+                            Console.WriteLine("you ran into a oger");
+                            Console.WriteLine("you took " + enemyDamage + " before defeating it");
                             Console.WriteLine();
                         }
                         else if (pulledNum == 0)
                         {
-                            Console.WriteLine("nothing happens");
+                            Console.WriteLine("while wandering through the woods you found a chef");
+                            Console.WriteLine("you gain 25 health while on your journy!");
+                            health += 25;
                             Console.WriteLine();
                         }
                     }
