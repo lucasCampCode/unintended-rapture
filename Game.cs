@@ -13,18 +13,22 @@ namespace HelloWorld
         {
             start:
             //one character game where stats start normally
-            //this variable sets the normal health
-            float health;
             //this value sets the starter level
-            float level;
-            string role;
-            string place;
-            float maxhealth;
-            maxhealth = 100;
-            health = 100;
-            level = 1;
-            role = "not set";
-            place = "lobby";
+            float level = 1,health = 100,maxhealth = 100,playerDamage = 10;
+            string role = "not set",place = "lobby";
+            void EnemyStats()
+            {
+
+            }
+            //whenever i need to change stats
+            void PlayerStats(float mH,float h,float l,float pD,string r)
+            {
+                maxhealth = mH;
+                health = h;
+                level = l;
+                role = r;
+                playerDamage = pD;
+            }
 
 
 
