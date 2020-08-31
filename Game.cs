@@ -119,9 +119,7 @@ namespace HelloWorld
                     if (role == "fighter")
                     {
                         Console.WriteLine("you have chossen the fighter role!");
-                        playerMaxhealth = 150;
-                        playerHealth = 150;
-                        playerRole = "fighter";
+                        PlayerStats(150,150,playerLevel,50,"fighter");
                         Console.WriteLine("press any key to continue.");
                         Console.ReadKey();
                         Console.Clear();
@@ -129,9 +127,7 @@ namespace HelloWorld
                     else if (role == "tank")
                     {
                         Console.WriteLine("you have chossen tank role!");
-                        playerMaxhealth = 300;
-                        playerHealth = 300;
-                        playerRole = "tank";
+                        PlayerStats(300, 300, playerLevel, 30, "tank");
                         Console.WriteLine("press any key to continue.");
                         Console.ReadKey();
                         Console.Clear();
@@ -151,24 +147,7 @@ namespace HelloWorld
                 }
                 else if(todo == "rest")
                 {
-                    if(playerHealth <= playerMaxhealth)
-                    {
-                        for (int i = 0; i < playerMaxhealth; i++)
-                        {
-                            if (playerHealth != playerMaxhealth)
-                            {
-                                playerHealth++;
-                                Console.WriteLine("health: " + playerHealth);
-                            }
-                        }
-                    }
-                    else
-                    {
-                        Console.WriteLine("you are at max health");
-                    }
-                    Console.WriteLine("press any key to continue");
-                    Console.ReadKey();
-                    Console.Clear();
+                    
                 }
 
 
