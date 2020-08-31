@@ -8,24 +8,29 @@ namespace HelloWorld
 {
     class Game
     {
-
+        private readonly Random rand = new Random();
+        public int RandomNumber(int min, int max)
+        {
+            return rand.Next(min, max);
+        }
         public void Run()
         {
         start:
             //one character game where stats start normally
             //this variable sets the normal health
-            float health;
-            //this value sets the starter level
-            float level;
-            string role;
-            string place;
-            float maxhealth;
-            maxhealth = 100;
-            health = 100;
-            level = 1;
-            role = "not set";
-            place = "lobby";
+            float playerLevel = 1, playerHealth = 100, playerMaxhealth = 100, playerDamage = 10;
+            string playerRole = "not set", place = "lobby";
+            //enemy stats
 
+
+            void PlayerStats(float mH, float h, float l, float pD, string r)
+            {
+                playerMaxhealth = mH;
+                playerHealth = h;
+                playerLevel = l;
+                playerRole = r;
+                playerDamage = pD;
+            }
 
 
             //start of the game generation
@@ -51,7 +56,7 @@ namespace HelloWorld
                 Console.WriteLine();
                 Console.WriteLine("  type rest to regain health");
                 Console.WriteLine();
-                if (role != "not set")
+                if (playerRole != "not set")
                 {
                     Console.WriteLine(" type hunt to walk out the lobby");
                     Console.WriteLine();
@@ -62,14 +67,14 @@ namespace HelloWorld
                 if (todo == "stats")
                 {
                     Console.WriteLine("user: " + name);
-                    Console.WriteLine("role:" + role);
-                    Console.WriteLine("health: " + health);
-                    Console.WriteLine("level: " + level);
+                    Console.WriteLine("role:" + playerRole);
+                    Console.WriteLine("health: " + playerHealth);
+                    Console.WriteLine("level: " + playerLevel);
                     Console.WriteLine("press any key to continue.");
                     Console.ReadKey();
                     Console.Clear();
                 }
-                else if (todo == "role" && role == "not set")
+                else if (todo == "role" && playerRole == "not set")
                 //roles
                 {
                     Console.WriteLine("so you want a role!");
@@ -82,9 +87,7 @@ namespace HelloWorld
                     if (roleS == "fighter")
                     {
                         Console.WriteLine("you have chossen the fighter role!");
-                        maxhealth = 150;
-                        health = 150;
-                        role = "fighter";
+                        PlayerStats(150, 150, playerLevel, 50, "fighter");
                         Console.WriteLine("press any key to continue.");
                         Console.ReadKey();
                         Console.Clear();
@@ -92,16 +95,14 @@ namespace HelloWorld
                     else if (roleS == "tank")
                     {
                         Console.WriteLine("you have chossen tank role!");
-                        maxhealth = 300;
-                        health = 300;
-                        role = "tank";
+                        PlayerStats(300, 300, playerLevel, 30, "tank");
                         Console.WriteLine("press any key to continue.");
                         Console.ReadKey();
                         Console.Clear();
                     }
 
                 }
-                else if (todo == "role" && role != "not set")
+                else if (todo == "role" && playerRole != "not set")
                 {
                     Console.WriteLine("sorry you have already chose your role.");
                     Console.WriteLine("press any key to continue.");
@@ -114,24 +115,7 @@ namespace HelloWorld
                 }
                 else if (todo == "rest")
                 {
-                    if (health <= maxhealth)
-                    {
-                        for (int i = 0; i < maxhealth; i++)
-                        {
-                            if (health != maxhealth)
-                            {
-                                health++;
-                                Console.WriteLine("health: " + health);
-                            }
-                        }
-                    }
-                    else
-                    {
-                        Console.WriteLine("you are at max health");
-                    }
-                    Console.WriteLine("press any key to continue");
-                    Console.ReadKey();
-                    Console.Clear();
+                    playerHealth = playerMaxhealth;
                 }
 
 
@@ -144,8 +128,7 @@ namespace HelloWorld
 
                     Random rnd = new Random();
                     //array for diffrent numbers
-                    int[] randNum = { 0, 1, 2, 3, 4, 5, 6, 7, 8 };
-                    int[] randDamage = { 10, 20, 30, 40, 50 };
+                    
                     Console.WriteLine("you walk around to find something to do");
                     Console.WriteLine();
                     Console.WriteLine("press 1 to continue to walk");
@@ -155,17 +138,16 @@ namespace HelloWorld
                     Console.Clear();
 
                     // get random indexes for number
-                    int pulledNum = rnd.Next(randNum.Length);
-                    int pulledDamage = rnd.Next(randDamage.Length);
+                    int pulledNum = RandomNumber(0, 9);
 
 
 
-                    if (health < 50)
+                    if (playerHealth < 50)
                     {
                         Console.WriteLine("you are low on health go to the lobby to replenish your health");
                         Console.WriteLine();
                     }
-                    if (health <= 0)
+                    if (playerHealth <= 0)
                     {
                         Console.WriteLine("you died while running into enemies");
                         Console.WriteLine();
@@ -195,13 +177,13 @@ namespace HelloWorld
                         }
                         else if (pulledNum == 2)
                         {
-                            int enemyDamage = randDamage[pulledDamage];
+                            int enemyDamage = RandomNumber(10, 50);
                             Console.WriteLine("you stumbled across an orc");
-                            health -= enemyDamage;
+                            playerHealth -= enemyDamage;
                             Console.WriteLine();
                             Console.WriteLine("you took " + enemyDamage + " before defeating them");
                             Console.WriteLine();
-                            level += 0.5f;
+                            playerLevel += 0.5f;
 
                         }
                         else if (pulledNum == 3)
@@ -211,9 +193,9 @@ namespace HelloWorld
                         }
                         else if (pulledNum == 4)
                         {
-                            int enemyDamage = randDamage[pulledDamage];
+                            int enemyDamage = RandomNumber(10, 50);
                             Console.WriteLine("you stumbled across goblins");
-                            health -= enemyDamage;
+                            playerHealth -= enemyDamage;
                             Console.WriteLine();
                             Console.WriteLine("you took " + enemyDamage + " before defeating them");
                             Console.WriteLine();
@@ -225,18 +207,18 @@ namespace HelloWorld
                         }
                         else if (pulledNum == 6)
                         {
-                            int enemyDamage = randDamage[pulledDamage];
-                            health -= enemyDamage;
+                            int enemyDamage = RandomNumber(10,50);
+                            playerHealth -= enemyDamage;
                             if (enemyDamage > 20)
                             {
                                 Console.WriteLine("you ran into a pack of wolves!");
-                                level += 1;
+                                playerLevel += 1;
                             }
                             else
                             {
                                 Console.WriteLine("you ran into a wolf!");
                                 Console.WriteLine();
-                                level += 0.2f;
+                                playerLevel += 0.2f;
                             }
                             Console.WriteLine("you took " + enemyDamage + " before defeating them");
                             Console.WriteLine();
@@ -248,8 +230,8 @@ namespace HelloWorld
                         }
                         else if (pulledNum == 8)
                         {
-                            int enemyDamage = randDamage[pulledDamage];
-                            health -= enemyDamage;
+                            int enemyDamage = RandomNumber(10,50);
+                            playerHealth -= enemyDamage;
                             Console.WriteLine("you ran into a oger");
                             Console.WriteLine("you took " + enemyDamage + " before defeating it");
                             Console.WriteLine();
@@ -258,7 +240,7 @@ namespace HelloWorld
                         {
                             Console.WriteLine("while wandering through the woods you found a chef");
                             Console.WriteLine("you gain 25 health while on your journy!");
-                            health += 25;
+                            playerHealth += 25;
                             Console.WriteLine();
                         }
                     }
@@ -272,7 +254,7 @@ namespace HelloWorld
                         Console.WriteLine();
                     }
                 }
-                if (health <= 0) { break; }
+                if (playerHealth <= 0) { break; }
             }
 
         }
